@@ -1,2 +1,4 @@
-# flutter_qtest
-Flutter test assignment
+# q test app
+
+A new Flutter project.
+
