@@ -1,6 +1,6 @@
 {
-    "name": "meritas",
-    "short_name": "meritas",
+    "name": "qtest",
+    "short_name": "qtest",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

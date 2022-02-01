@@ -40,9 +40,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:meritas/models/comment/comment.dart';
-import 'package:meritas/screens/home/home_controller.dart';
-import 'package:meritas/screens/home/list_item.dart';
+import 'package:qtest/models/comment/comment.dart';
+import 'package:qtest/screens/home/home_controller.dart';
+import 'package:qtest/screens/home/list_item.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home_screen';
@@ -54,7 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
   static const _pageSize = 20;
   final homeController = Get.find<HomeController>();
 
-  final PagingController<int, Comment> _pagingController = PagingController(firstPageKey: 0);
+  final PagingController<int, Comment> _pagingController =
+      PagingController(firstPageKey: 0, invisibleItemsThreshold: 5);
 
   @override
   void initState() {

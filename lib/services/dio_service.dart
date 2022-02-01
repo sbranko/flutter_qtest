@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide FormData, MultipartFile, Response;
-import 'package:meritas/constants/constants.dart';
-import 'package:meritas/models/api_error/api_error.dart';
-import 'package:meritas/models/api_result/api_result.dart';
+import 'package:qtest/constants/constants.dart';
+import 'package:qtest/models/api_error/api_error.dart';
+import 'package:qtest/models/api_result/api_result.dart';
 
 import 'alice_service.dart';
 import 'logger_service.dart';
@@ -48,14 +48,14 @@ class DioService extends GetxService {
   /// VARIABLES
   /// ------------------------
 
-  late final Dio _dioMeritas;
+  late final Dio _dioQapp;
   late final Dio _dioIex;
 
   /// ------------------------
   /// GETTERS
   /// ------------------------
 
-  Dio get dioQ => _dioMeritas;
+  Dio get dioQ => _dioQapp;
 
   Dio get dioIex => _dioIex;
 
@@ -63,7 +63,7 @@ class DioService extends GetxService {
   /// SETTERS
   /// ------------------------
 
-  set dioQ(Dio value) => _dioMeritas = value;
+  set dioQ(Dio value) => _dioQapp = value;
 
   set dioIex(Dio value) => _dioIex = value;
 

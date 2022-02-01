@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:meritas/constants/colors.dart';
+import 'package:qtest/constants/colors.dart';
 
-class MeritasButton extends StatelessWidget {
-  const MeritasButton({
+class QappButton extends StatelessWidget {
+  const QappButton({
     this.color = QColors.green,
     this.disabledColor = Colors.transparent,
     this.paddingLeft = 25.0,

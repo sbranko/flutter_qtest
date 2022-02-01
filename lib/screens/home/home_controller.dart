@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:meritas/models/comment/comment.dart';
-import 'package:meritas/services/dio_service.dart';
-import 'package:meritas/services/storage_service.dart';
+import 'package:qtest/models/comment/comment.dart';
+import 'package:qtest/services/dio_service.dart';
+import 'package:qtest/services/storage_service.dart';
 
 import '../../models/car/car.dart';
 import '../../services/logger_service.dart';

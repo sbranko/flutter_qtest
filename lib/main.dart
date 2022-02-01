@@ -16,14 +16,14 @@ Future<void> main() async {
   Get
     ..put(AliceService())
     ..put(LoggerService());
-  runApp(MeritasApp());
+  runApp(QApp());
 }
 
-class MeritasApp extends StatelessWidget {
+class QApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ScreenUtilInit(
         builder: () => GetMaterialApp(
-          title: 'Meritas',
+          title: 'Qapp',
           navigatorKey: Get.find<AliceService>().alice.getNavigatorKey(),
           theme: theme,
           initialBinding: GlobalBinding(),

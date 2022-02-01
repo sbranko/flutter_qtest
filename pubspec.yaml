@@ -1,4 +1,4 @@
-name: meritas
+name: qtest
 description: A new Flutter project.
 
 publish_to: 'none'
@@ -20,15 +20,12 @@ dependencies:
 
   alice_lightweight: ^3.0.0 # HTTP Inspector tool which helps debugging HTTP requests
   audioplayers: ^0.20.1 # Used to play audio files
-  better_player: ^0.0.77 # Used to play video files
   cached_network_image: ^3.1.0 # Load and cache network images
-  cloud_firestore: ^2.5.4 # Cloud-hosted, noSQL database
   connectivity_plus: ^2.0.2 # Used to check if device is connected to the network
   cupertino_icons: ^1.0.3 # Apple styled icons
   device_info_plus: ^3.1.0 # Get current device information
   dio: ^4.0.1 # Used as a HTTP client
-  firebase_auth: ^3.1.4 # Android and iOS authentication using passwords, etc.
-  firebase_core: ^1.8.0 # Connects to Firebase services
+
   flutter_screenutil: ^5.0.0+2 # Used for adapting screen and font size
   flutter_spinkit: ^5.1.0 # Collection of loading indicators
   flutter_svg: ^0.23.0+1 # SVG rendering library
@@ -45,6 +42,8 @@ dependencies:
   sensors_plus: ^1.2.1 # Used to access the accelerometer, gyroscope, and magnetometer sensors
   url_launcher: ^6.0.12 # Used to launch URLs in native browser
   infinite_scroll_pagination: ^3.1.0
+  change_app_package_name: ^1.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

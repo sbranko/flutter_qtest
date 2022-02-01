@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cinnamon.meritas">
+    package="com.q.qtest">
    <application
-        android:label="meritas"
-        android:icon="@mipmap/ic_launcher">
+        android:label="qtest"
+         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

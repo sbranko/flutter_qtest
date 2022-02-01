@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:meritas/models/comment/comment.dart';
+import 'package:qtest/models/comment/comment.dart';
 
 /// List item representing a single Character with its photo and name.
 class CharacterListItem extends StatelessWidget {
