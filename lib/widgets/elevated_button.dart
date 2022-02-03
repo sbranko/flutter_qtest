@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:qtest/constants/colors.dart';
+
+import '../constants/colors.dart';
 
 class QappButton extends StatelessWidget {
   const QappButton({
@@ -27,20 +27,17 @@ class QappButton extends StatelessWidget {
           child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(5.0),
+            borderRadius: new BorderRadius.circular(5),
           ),
           fixedSize: Size(Get.width - 50, 48),
           primary: color,
           onPrimary: Colors.white,
-          side: BorderSide(
-            width: 1.0,
+          side: const BorderSide(
             color: QColors.green,
           ),
           elevation: 5,
         ),
-        onPressed: () {
-          onPressed;
-        },
+        onPressed: onPressed,
         child: Text(text),
       ));
 }

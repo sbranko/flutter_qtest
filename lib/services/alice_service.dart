@@ -1,4 +1,4 @@
-import 'package:alice_lightweight/alice.dart';
+import 'package:alice/alice.dart';
 import 'package:get/get.dart';
 
 class AliceService extends GetxService {
@@ -27,7 +27,7 @@ class AliceService extends GetxService {
   @override
   void onInit() {
     super.onInit();
-    alice = Alice(darkTheme: true);
+    alice = Alice();
   }
 
   /// ------------------------

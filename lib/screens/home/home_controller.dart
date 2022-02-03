@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:qtest/models/comment/comment.dart';
-import 'package:qtest/services/dio_service.dart';
-import 'package:qtest/services/storage_service.dart';
 
 import '../../models/car/car.dart';
+import '../../models/comment/comment.dart';
+import '../../services/dio_service.dart';
 import '../../services/logger_service.dart';
+import '../../services/storage_service.dart';
 
 class HomeController extends GetxController with StateMixin<List<Comment>> {
   /// ------------------------
@@ -95,7 +95,6 @@ class HomeController extends GetxController with StateMixin<List<Comment>> {
           return listLeaderboard.map((e) => Comment.fromJson(e)).toList();
         },
       );
-
       await response.when(
         success: (commentResponse) async {
           loggerService.logger.i(commentResponse);

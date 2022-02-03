@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:qtest/constants/text_styles.dart';
-import 'package:qtest/models/comment/comment.dart';
+
+import '../../../constants/text_styles.dart';
+import '../../../models/comment/comment.dart';
 
 class HomeCarsWidget extends StatelessWidget {
   final List<Comment> cars;

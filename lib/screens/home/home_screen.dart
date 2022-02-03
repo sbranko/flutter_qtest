@@ -37,12 +37,12 @@
 // }
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:qtest/models/comment/comment.dart';
-import 'package:qtest/screens/home/home_controller.dart';
-import 'package:qtest/screens/home/list_item.dart';
+
+import '../../models/comment/comment.dart';
+import 'home_controller.dart';
+import 'list_item.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home_screen';
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final homeController = Get.find<HomeController>();
 
   final PagingController<int, Comment> _pagingController =
-      PagingController(firstPageKey: 0, invisibleItemsThreshold: 5);
+      PagingController(firstPageKey: 0, invisibleItemsThreshold: 10);
 
   @override
   void initState() {
@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('Characters'),
+          title: const Text('Comments'),
         ),
         resizeToAvoidBottomInset: false,
         body: RefreshIndicator(
@@ -94,35 +94,13 @@ class _HomeScreenState extends State<HomeScreen> {
             pagingController: _pagingController,
 
             builderDelegate: PagedChildBuilderDelegate<Comment>(
-                animateTransitions: false, itemBuilder: (context, item, index) => CharacterListItem(character: item)),
+                itemBuilder: (context, item, index) => CommentListItem(
+                      character: item,
+                      index: index,
+                    )),
           ),
         ),
       );
-
-  showAlertDialog(BuildContext context) {
-    // set up the button
-    Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {},
-    );
-
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text("My title"),
-      content: Text("This is my message."),
-      actions: [
-        okButton,
-      ],
-    );
-
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-  }
 
   @override
   void dispose() {

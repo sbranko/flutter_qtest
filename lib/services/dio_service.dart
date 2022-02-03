@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide FormData, MultipartFile, Response;
-import 'package:qtest/constants/constants.dart';
-import 'package:qtest/models/api_error/api_error.dart';
-import 'package:qtest/models/api_result/api_result.dart';
 
+import '../constants/constants.dart';
+import '../models/api_error/api_error.dart';
+import '../models/api_result/api_result.dart';
 import 'alice_service.dart';
 import 'logger_service.dart';
 import 'storage_service.dart';
@@ -172,7 +172,8 @@ class DioService extends GetxService {
         return ApiResult<T>.success(result);
       }
     } on DioError catch (e) {
-      loggerService.logger.e('$url\nPOST\n$e]\n[API] Proceeding to parse Dio error.');
+      loggerService.logger
+          .e('$url\nPOST\n$e]\n[API] Proceeding to parse Dio error.');
       try {
         final errorData = e.response?.data as Map<String, dynamic>;
         final error = ApiError.fromJson(errorData);
@@ -180,7 +181,8 @@ class DioService extends GetxService {
         return ApiResult<T>.error(error);
       } catch (e) {
         loggerService.logger.e('[API] Failed parsing Dio Error! Rethrowing!');
-        final error = ApiError(message: 'Unsuccessfully tried parsing error message.');
+        final error =
+            ApiError(message: 'Unsuccessfully tried parsing error message.');
         return ApiResult<T>.error(error);
       }
     }

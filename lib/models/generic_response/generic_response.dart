@@ -7,8 +7,9 @@ part 'generic_response.g.dart';
 class GenericResponse with _$GenericResponse {
   factory GenericResponse({
     @JsonKey(name: 'Message') required String message,
-    @JsonKey(name: 'Payload') dynamic? payload,
+    @JsonKey(name: 'Payload') payload,
   }) = _GenericResponse;
 
-  factory GenericResponse.fromJson(Map<String, dynamic> json) => _$GenericResponseFromJson(json);
+  factory GenericResponse.fromJson(Map<String, dynamic> json) =>
+      _$GenericResponseFromJson(json);
 }
