@@ -53,13 +53,7 @@ class CommentListItem extends StatelessWidget {
               DataRow(cells: [
                 DataCell(
                   Text(comment.id.toString()),
-                  onTap: () => Get.defaultDialog(
-                    title: 'Id',
-                    middleText: comment.id.toString(),
-                    backgroundColor: Colors.indigoAccent,
-                    titleStyle: const TextStyle(color: Colors.white),
-                    middleTextStyle: const TextStyle(color: Colors.white),
-                  ),
+                  onTap: () => showDialog('Id', comment.id.toString()),
                 ),
                 DataCell(
                   Center(
@@ -67,13 +61,7 @@ class CommentListItem extends StatelessWidget {
                       comment.postId.toString(),
                     ),
                   ),
-                  onTap: () => Get.defaultDialog(
-                    title: 'PostId',
-                    middleText: comment.postId.toString(),
-                    backgroundColor: Colors.indigoAccent,
-                    titleStyle: const TextStyle(color: Colors.white),
-                    middleTextStyle: const TextStyle(color: Colors.white),
-                  ),
+                  onTap: () => showDialog('PostId', comment.postId.toString()),
                 ),
                 DataCell(
                   SizedBox(
@@ -88,13 +76,7 @@ class CommentListItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onTap: () => Get.defaultDialog(
-                    title: 'Name',
-                    middleText: comment.name.toString(),
-                    backgroundColor: Colors.indigoAccent,
-                    titleStyle: const TextStyle(color: Colors.white),
-                    middleTextStyle: const TextStyle(color: Colors.white),
-                  ),
+                  onTap: () => showDialog('Name', comment.name.toString()),
                 ),
                 DataCell(
                   SizedBox(
@@ -109,13 +91,7 @@ class CommentListItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onTap: () => Get.defaultDialog(
-                    title: 'Email',
-                    middleText: comment.email.toString(),
-                    backgroundColor: Colors.indigoAccent,
-                    titleStyle: const TextStyle(color: Colors.white),
-                    middleTextStyle: const TextStyle(color: Colors.white),
-                  ),
+                  onTap: () => showDialog('Email', comment.email.toString()),
                 ),
                 DataCell(
                   SizedBox(
@@ -130,13 +106,7 @@ class CommentListItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onTap: () => Get.defaultDialog(
-                    title: 'Body',
-                    middleText: comment.body.toString(),
-                    backgroundColor: Colors.indigoAccent,
-                    titleStyle: const TextStyle(color: Colors.white),
-                    middleTextStyle: const TextStyle(color: Colors.white),
-                  ),
+                  onTap: () => showDialog('Body', comment.body.toString()),
                 ),
               ]),
             ],
@@ -169,13 +139,7 @@ class CommentListItem extends StatelessWidget {
           DataRow(cells: [
             DataCell(
               Text(comment.id.toString()),
-              onTap: () => Get.defaultDialog(
-                title: 'Id',
-                middleText: comment.id.toString(),
-                backgroundColor: Colors.indigoAccent,
-                titleStyle: const TextStyle(color: Colors.white),
-                middleTextStyle: const TextStyle(color: Colors.white),
-              ),
+              onTap: () => showDialog('Id', comment.id.toString()),
             ),
             DataCell(
               Center(
@@ -183,13 +147,7 @@ class CommentListItem extends StatelessWidget {
                   comment.postId.toString(),
                 ),
               ),
-              onTap: () => Get.defaultDialog(
-                title: 'PostId',
-                middleText: comment.postId.toString(),
-                backgroundColor: Colors.indigoAccent,
-                titleStyle: const TextStyle(color: Colors.white),
-                middleTextStyle: const TextStyle(color: Colors.white),
-              ),
+              onTap: () => showDialog('PostId', comment.postId.toString()),
             ),
             DataCell(
               SizedBox(
@@ -204,13 +162,7 @@ class CommentListItem extends StatelessWidget {
                   ),
                 ),
               ),
-              onTap: () => Get.defaultDialog(
-                title: 'Name',
-                middleText: comment.name.toString(),
-                backgroundColor: Colors.indigoAccent,
-                titleStyle: const TextStyle(color: Colors.white),
-                middleTextStyle: const TextStyle(color: Colors.white),
-              ),
+              onTap: () => showDialog('Name', comment.name.toString()),
             ),
             DataCell(
               SizedBox(
@@ -225,13 +177,7 @@ class CommentListItem extends StatelessWidget {
                   ),
                 ),
               ),
-              onTap: () => Get.defaultDialog(
-                title: 'Email',
-                middleText: comment.email.toString(),
-                backgroundColor: Colors.indigoAccent,
-                titleStyle: const TextStyle(color: Colors.white),
-                middleTextStyle: const TextStyle(color: Colors.white),
-              ),
+              onTap: () => showDialog('Name', comment.name.toString()),
             ),
             DataCell(
               SizedBox(
@@ -246,17 +192,21 @@ class CommentListItem extends StatelessWidget {
                   ),
                 ),
               ),
-              onTap: () => Get.defaultDialog(
-                title: 'Body',
-                middleText: comment.body.toString(),
-                backgroundColor: Colors.indigoAccent,
-                titleStyle: const TextStyle(color: Colors.white),
-                middleTextStyle: const TextStyle(color: Colors.white),
-              ),
+              onTap: () => showDialog('Body', comment.body.toString()),
             ),
           ]),
         ],
       );
     }
+  }
+
+  void showDialog(String title, String text) {
+    Get.defaultDialog(
+      title: title,
+      middleText: text,
+      backgroundColor: Colors.indigoAccent,
+      titleStyle: const TextStyle(color: Colors.white),
+      middleTextStyle: const TextStyle(color: Colors.white),
+    );
   }
 }
