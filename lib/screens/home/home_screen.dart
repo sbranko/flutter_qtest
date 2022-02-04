@@ -41,6 +41,7 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../models/comment/comment.dart';
+import '../../services/network_manager.dart';
 import 'home_controller.dart';
 import 'list_item.dart';
 
@@ -56,10 +57,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final PagingController<int, Comment> _pagingController =
       PagingController(firstPageKey: 0, invisibleItemsThreshold: 10);
+  // create an instance
+  final GetXNetworkManager _networkManager = Get.find<GetXNetworkManager>();
 
   @override
   void initState() {
     _pagingController.addPageRequestListener(_fetchPage);
+    if (_networkManager.connectionType == 0) {
+      _pagingController.removePageRequestListener(_fetchPage);
+    }
+    ;
     super.initState();
   }
 
@@ -85,21 +92,25 @@ class _HomeScreenState extends State<HomeScreen> {
           title: const Text('Comments'),
         ),
         resizeToAvoidBottomInset: false,
-        body: RefreshIndicator(
-          onRefresh: () => Future.sync(
-            _pagingController.refresh,
-          ),
-          child: PagedListView<int, Comment>(
-            // physics: BouncingScrollPhysics(),
-            pagingController: _pagingController,
+        body: GetBuilder<GetXNetworkManager>(
+            builder: (builder) => _networkManager.connectionType != 0
+                ? RefreshIndicator(
+                    onRefresh: () => Future.sync(
+                      _pagingController.refresh,
+                    ),
+                    child: PagedListView<int, Comment>(
+                      // physics: BouncingScrollPhysics(),
+                      pagingController: _pagingController,
 
-            builderDelegate: PagedChildBuilderDelegate<Comment>(
-                itemBuilder: (context, item, index) => CommentListItem(
-                      character: item,
-                      index: index,
-                    )),
-          ),
-        ),
+                      builderDelegate: PagedChildBuilderDelegate<Comment>(
+                          itemBuilder: (context, item, index) =>
+                              CommentListItem(
+                                character: item,
+                                index: index,
+                              )),
+                    ),
+                  )
+                : Text('No Internet')),
       );
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:qtest/constants/colors.dart';
 
 import '../../models/comment/comment.dart';
 
@@ -47,9 +48,32 @@ class CommentListItem extends StatelessWidget {
             ],
             rows: [
               DataRow(cells: [
-                DataCell(Text(character.id.toString())),
-                DataCell(Center(child: Text(character.postId.toString()))),
-                DataCell(SizedBox(
+                DataCell(
+                  Text(character.id.toString()),
+                  onTap: () => Get.defaultDialog(
+                    title: 'Id',
+                    middleText: character.id.toString(),
+                    backgroundColor: QColors.green,
+                    titleStyle: TextStyle(color: Colors.white),
+                    middleTextStyle: TextStyle(color: Colors.white),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      character.postId.toString(),
+                    ),
+                  ),
+                  onTap: () => Get.defaultDialog(
+                    title: 'PostId',
+                    middleText: character.postId.toString(),
+                    backgroundColor: QColors.green,
+                    titleStyle: TextStyle(color: Colors.white),
+                    middleTextStyle: TextStyle(color: Colors.white),
+                  ),
+                ),
+                DataCell(
+                  SizedBox(
                     width: Get.width / 4,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -59,8 +83,18 @@ class CommentListItem extends StatelessWidget {
                             style: const TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.normal)),
                       ),
-                    ))),
-                DataCell(SizedBox(
+                    ),
+                  ),
+                  onTap: () => Get.defaultDialog(
+                    title: 'Email',
+                    middleText: character.email.toString(),
+                    backgroundColor: Colors.indigoAccent,
+                    titleStyle: TextStyle(color: Colors.white),
+                    middleTextStyle: TextStyle(color: Colors.white),
+                  ),
+                ),
+                DataCell(
+                  SizedBox(
                     width: Get.width / 2,
                     child: SingleChildScrollView(
                       child: Padding(
@@ -69,7 +103,16 @@ class CommentListItem extends StatelessWidget {
                             style: const TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.normal)),
                       ),
-                    ))),
+                    ),
+                  ),
+                  onTap: () => Get.defaultDialog(
+                    title: 'Body',
+                    middleText: character.body.toString(),
+                    backgroundColor: Colors.indigoAccent,
+                    titleStyle: TextStyle(color: Colors.white),
+                    middleTextStyle: TextStyle(color: Colors.white),
+                  ),
+                ),
               ]),
             ],
           ),

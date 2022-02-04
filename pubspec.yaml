@@ -18,7 +18,7 @@ dependencies:
   # Also, sort the dependencies alphabetically
   # ------------------------------------
   alice: 0.2.5 # HTTP Inspector tool which helps debugging HTTP requests
-
+  flutter_offline: ^2.0.0
   audioplayers: ^0.20.1 # Used to play audio files
   cached_network_image: ^3.1.0 # Load and cache network images
   connectivity_plus: ^2.0.2 # Used to check if device is connected to the network
