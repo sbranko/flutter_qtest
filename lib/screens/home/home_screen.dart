@@ -66,7 +66,6 @@ class _HomeScreenState extends State<HomeScreen> {
     if (_networkManager.connectionType == 0) {
       _pagingController.removePageRequestListener(_fetchPage);
     }
-    ;
     super.initState();
   }
 
@@ -105,12 +104,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       builderDelegate: PagedChildBuilderDelegate<Comment>(
                           itemBuilder: (context, item, index) =>
                               CommentListItem(
-                                character: item,
+                                comment: item,
                                 index: index,
                               )),
                     ),
                   )
-                : Text('No Internet')),
+                : const Center(
+                    child: Text(
+                      'No Internet',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  )),
       );
 
   @override

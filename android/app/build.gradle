@@ -33,7 +33,7 @@ android {
     productFlavors {
         dev {
             dimension "flavor-type"
-            applicationId "com.qtest.dev"
+            applicationId "com.qtest.app"
             resValue "string", "app_name", "Dev App"
         }
         live {

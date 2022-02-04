@@ -18,14 +18,15 @@ dependencies:
   # Also, sort the dependencies alphabetically
   # ------------------------------------
   alice: 0.2.5 # HTTP Inspector tool which helps debugging HTTP requests
-  flutter_offline: ^2.0.0
   audioplayers: ^0.20.1 # Used to play audio files
   cached_network_image: ^3.1.0 # Load and cache network images
+  change_app_package_name: ^1.0.0
   connectivity_plus: ^2.0.2 # Used to check if device is connected to the network
   cupertino_icons: ^1.0.3 # Apple styled icons
   device_info_plus: ^3.1.0 # Get current device information
   dio: ^4.0.1 # Used as a HTTP client
-
+  flutter_flavorizr: ^2.1.2
+  flutter_offline: ^2.0.0
   flutter_screenutil: ^5.0.0+2 # Used for adapting screen and font size
   flutter_spinkit: ^5.1.0 # Collection of loading indicators
   flutter_svg: ^0.23.0+1 # SVG rendering library
@@ -33,6 +34,7 @@ dependencies:
   get: ^4.3.8 # State management, dependency injection, etc.
   get_storage: ^2.0.3 # Fast, light and synchronous key-value storage
   google_fonts: ^2.1.0 # Include fonts from fonts.google.com
+  infinite_scroll_pagination: ^3.1.0
   json_annotation: ^4.3.0 # Defines the annotations used by json_serializable
   json_serializable: ^6.0.1 # Automatically generate code for converting to and from JSON
   location: ^4.3.0 # Used for getting the device location
@@ -41,9 +43,6 @@ dependencies:
   photo_view: ^0.13.0 # Simple zoomable image/content widget
   sensors_plus: ^1.2.1 # Used to access the accelerometer, gyroscope, and magnetometer sensors
   url_launcher: ^6.0.12 # Used to launch URLs in native browser
-  infinite_scroll_pagination: ^3.1.0
-  change_app_package_name: ^1.0.0
-  flutter_flavorizr: ^2.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

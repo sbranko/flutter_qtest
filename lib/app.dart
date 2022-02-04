@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'flavors.dart';
@@ -6,18 +5,15 @@ import 'pages/my_home_page.dart';
 
 class App extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: F.title,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: _flavorBanner(
-        child: MyHomePage(),
-        show: kDebugMode,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        title: F.title,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: _flavorBanner(
+          child: MyHomePage(),
+        ),
+      );
 
   Widget _flavorBanner({
     required Widget child,
@@ -25,17 +21,15 @@ class App extends StatelessWidget {
   }) =>
       show
           ? Banner(
-        child: child,
-        location: BannerLocation.topStart,
-        message: F.name,
-        color: Colors.green.withOpacity(0.6),
-        textStyle: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 12.0,
-            letterSpacing: 1.0),
-        textDirection: TextDirection.ltr,
-      )
+              location: BannerLocation.topStart,
+              message: F.name,
+              color: Colors.green.withOpacity(0.6),
+              textStyle: const TextStyle(
+                  fontWeight: FontWeight.w700, fontSize: 12, letterSpacing: 1),
+              textDirection: TextDirection.ltr,
+              child: child,
+            )
           : Container(
-        child: child,
-      );
+              child: child,
+            );
 }

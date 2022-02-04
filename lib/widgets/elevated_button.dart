@@ -5,19 +5,22 @@ import '../constants/colors.dart';
 
 class QappButton extends StatelessWidget {
   const QappButton({
+    required this.text,
+    required this.onPressed,
     this.color = QColors.green,
     this.disabledColor = Colors.transparent,
     this.paddingLeft = 25.0,
     this.paddingRight = 25.0,
     this.paddingBottom = 0.0,
     this.paddingTop = 0.0,
-    required this.text,
-    required this.onPressed,
   });
 
   final Color color;
   final Color disabledColor;
-  final double paddingLeft, paddingRight, paddingTop, paddingBottom;
+  final double paddingLeft;
+  final double paddingRight;
+  final double paddingTop;
+  final double paddingBottom;
   final String text;
 
   final void Function()? onPressed;

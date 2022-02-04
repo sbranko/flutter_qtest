@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:qtest/services/network_manager.dart';
 
 import '../screens/home/home_controller.dart';
+import '../services/network_manager.dart';
 
 class HomeBinding extends Bindings {
   @override

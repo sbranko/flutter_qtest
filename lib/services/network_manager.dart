@@ -25,16 +25,16 @@ class GetXNetworkManager extends GetxController with StateMixin<bool> {
   Future<void> GetConnectionType() async {
     var connectivityResult;
     try {
-      connectivityResult = await (_connectivity.checkConnectivity());
+      connectivityResult = await _connectivity.checkConnectivity();
     } on PlatformException catch (e) {
       print(e);
     }
-    return _updateState(connectivityResult);
+    _updateState(connectivityResult);
   }
 
   // state update, of network, if you are connected to WIFI connectionType will get set to 1,
   // and update the state to the consumer of that variable.
-  _updateState(ConnectivityResult result) {
+  void _updateState(ConnectivityResult result) {
     switch (result) {
       case ConnectivityResult.wifi:
         connectionType = 1;

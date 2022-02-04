@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'bindings/global_binding.dart';
+import 'flavors.dart';
 import 'pages.dart';
 import 'screens/home/home_screen.dart';
 import 'services/alice_service.dart';
@@ -12,6 +13,8 @@ import 'strings.dart';
 import 'theme.dart';
 
 Future<void> main() async {
+  F.appFlavor = Flavor.live;
+
   await GetStorage.init();
   Get
     ..put(AliceService())
