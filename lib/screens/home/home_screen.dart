@@ -109,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               )),
                     ),
                   )
+                // TODO: implement local database to work offline
                 : const Center(
                     child: Text(
                       'No Internet',
