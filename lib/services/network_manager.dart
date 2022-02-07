@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +16,8 @@ class GetXNetworkManager extends GetxController with StateMixin<bool> {
 
   @override
   void onInit() {
+    change(null, status: RxStatus.success());
+
     GetConnectionType();
     _streamSubscription =
         _connectivity.onConnectivityChanged.listen(_updateState);

@@ -53,6 +53,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   static const _pageSize = 20;
   final homeController = Get.find<HomeController>();
+  final networkController = Get.put(GetXNetworkManager());
 
   final PagingController<int, Comment> _pagingController =
       PagingController(firstPageKey: 0, invisibleItemsThreshold: 3);
@@ -90,244 +91,246 @@ class _HomeScreenState extends State<HomeScreen> {
           title: const Text('Comments'),
         ),
         resizeToAvoidBottomInset: false,
-        body: GetBuilder<GetXNetworkManager>(
-            builder: (builder) => _networkManager.connectionType != 0
-                ? RefreshIndicator(
-                    onRefresh: () => Future.sync(
-                      _pagingController.refresh,
-                    ),
-                    child: PagedListView<int, Comment>(
-                      // physics: BouncingScrollPhysics(),
-                      pagingController: _pagingController,
-
-                      builderDelegate: PagedChildBuilderDelegate<Comment>(
-                          itemBuilder: (context, comment, index) {
-                        if (index != 0) {
-                          return SizedBox(
-                            width: double.infinity,
-                            child: DataTable(
-                              columnSpacing: 1,
-                              dataRowHeight: 80,
-                              dividerThickness: 2,
-                              headingRowHeight: 0,
-                              columns: const [
-                                DataColumn(
-                                    label: Text('Id',
+        body: networkController.obx((_) => _networkManager.connectionType != 0
+            ? RefreshIndicator(
+                onRefresh: () => Future.sync(
+                  _pagingController.refresh,
+                ),
+                child: PagedListView<int, Comment>(
+                  physics: const BouncingScrollPhysics(),
+                  pagingController: _pagingController,
+                  builderDelegate: PagedChildBuilderDelegate<Comment>(
+                      itemBuilder: (context, comment, index) {
+                    if (index != 0) {
+                      return SizedBox(
+                        width: double.infinity,
+                        child: DataTable(
+                          columnSpacing: 1,
+                          dataRowHeight: 80,
+                          dividerThickness: 2,
+                          headingRowHeight: 0,
+                          columns: const [
+                            DataColumn(
+                                label: Expanded(
+                              child: Text('Id',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold)),
+                            )),
+                            DataColumn(
+                                label: Expanded(
+                              child: Text('PostId',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold)),
+                            )),
+                            DataColumn(
+                                label: Expanded(
+                                    child: Text('Name',
                                         style: TextStyle(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.bold))),
-                                DataColumn(
-                                    label: Text('PostId',
+                                            fontWeight: FontWeight.bold)))),
+                            DataColumn(
+                                label: Expanded(
+                                    child: Text('Email',
                                         style: TextStyle(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.bold))),
-                                DataColumn(
-                                    label: Text('Name',
+                                            fontWeight: FontWeight.bold)))),
+                            DataColumn(
+                                label: Expanded(
+                                    child: Text('Body',
                                         style: TextStyle(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.bold))),
-                                DataColumn(
-                                    label: Text('Email',
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold))),
-                                DataColumn(
-                                    label: Text('Body',
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold))),
-                              ],
-                              rows: [
-                                DataRow(cells: [
-                                  DataCell(
-                                    Text(comment.id.toString()),
-                                    onTap: () =>
-                                        showDialog('Id', comment.id.toString()),
+                                            fontWeight: FontWeight.bold)))),
+                          ],
+                          rows: [
+                            DataRow(cells: [
+                              DataCell(
+                                Text(comment.id.toString()),
+                                onTap: () =>
+                                    showDialog('Id', comment.id.toString()),
+                              ),
+                              DataCell(
+                                Center(
+                                  child: Text(
+                                    comment.postId.toString(),
                                   ),
-                                  DataCell(
-                                    Center(
-                                      child: Text(
-                                        comment.postId.toString(),
-                                      ),
+                                ),
+                                onTap: () => showDialog(
+                                    'PostId', comment.postId.toString()),
+                              ),
+                              DataCell(
+                                SizedBox(
+                                  width: Get.width / 8,
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4),
+                                      child: Text(comment.name.toString(),
+                                          style: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.normal)),
                                     ),
-                                    onTap: () => showDialog(
-                                        'PostId', comment.postId.toString()),
                                   ),
-                                  DataCell(
-                                    SizedBox(
-                                      width: Get.width / 8,
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4),
-                                          child: Text(comment.name.toString(),
-                                              style: const TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight:
-                                                      FontWeight.normal)),
-                                        ),
-                                      ),
+                                ),
+                                onTap: () =>
+                                    showDialog('Name', comment.name.toString()),
+                              ),
+                              DataCell(
+                                SizedBox(
+                                  width: Get.width / 8,
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4),
+                                      child: Text(comment.email.toString(),
+                                          style: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.normal)),
                                     ),
-                                    onTap: () => showDialog(
-                                        'Name', comment.name.toString()),
                                   ),
-                                  DataCell(
-                                    SizedBox(
-                                      width: Get.width / 8,
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4),
-                                          child: Text(comment.email.toString(),
-                                              style: const TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight:
-                                                      FontWeight.normal)),
-                                        ),
-                                      ),
+                                ),
+                                onTap: () => showDialog(
+                                    'Email', comment.email.toString()),
+                              ),
+                              DataCell(
+                                SizedBox(
+                                  width: Get.width / 2,
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4),
+                                      child: Text(comment.body.toString(),
+                                          style: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.normal)),
                                     ),
-                                    onTap: () => showDialog(
-                                        'Email', comment.email.toString()),
                                   ),
-                                  DataCell(
-                                    SizedBox(
-                                      width: Get.width / 2,
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4),
-                                          child: Text(comment.body.toString(),
-                                              style: const TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight:
-                                                      FontWeight.normal)),
-                                        ),
-                                      ),
-                                    ),
-                                    onTap: () => showDialog(
-                                        'Body', comment.body.toString()),
-                                  ),
-                                ]),
-                              ],
+                                ),
+                                onTap: () =>
+                                    showDialog('Body', comment.body.toString()),
+                              ),
+                            ]),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return DataTable(
+                        columnSpacing: 1,
+                        dataRowHeight: 80,
+                        dividerThickness: 2,
+                        columns: const [
+                          DataColumn(
+                              label: Text('Id',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold))),
+                          DataColumn(
+                              label: Text('PostId',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold))),
+                          DataColumn(
+                              label: Text('Name',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold))),
+                          DataColumn(
+                              label: Text('Email',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold))),
+                          DataColumn(
+                              label: Text('Body',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold))),
+                        ],
+                        rows: [
+                          DataRow(cells: [
+                            DataCell(
+                              Text(comment.id.toString()),
+                              onTap: () =>
+                                  showDialog('Id', comment.id.toString()),
                             ),
-                          );
-                        } else {
-                          return DataTable(
-                            columnSpacing: 1,
-                            dataRowHeight: 80,
-                            dividerThickness: 2,
-                            columns: const [
-                              DataColumn(
-                                  label: Text('Id',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold))),
-                              DataColumn(
-                                  label: Text('PostId',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold))),
-                              DataColumn(
-                                  label: Text('Name',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold))),
-                              DataColumn(
-                                  label: Text('Email',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold))),
-                              DataColumn(
-                                  label: Text('Body',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold))),
-                            ],
-                            rows: [
-                              DataRow(cells: [
-                                DataCell(
-                                  Text(comment.id.toString()),
-                                  onTap: () =>
-                                      showDialog('Id', comment.id.toString()),
+                            DataCell(
+                              Center(
+                                child: Text(
+                                  comment.postId.toString(),
                                 ),
-                                DataCell(
-                                  Center(
-                                    child: Text(
-                                      comment.postId.toString(),
-                                    ),
+                              ),
+                              onTap: () => showDialog(
+                                  'PostId', comment.postId.toString()),
+                            ),
+                            DataCell(
+                              SizedBox(
+                                width: Get.width / 8,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4),
+                                    child: Text(comment.name.toString(),
+                                        style: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.normal)),
                                   ),
-                                  onTap: () => showDialog(
-                                      'PostId', comment.postId.toString()),
                                 ),
-                                DataCell(
-                                  SizedBox(
-                                    width: Get.width / 8,
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(4),
-                                        child: Text(comment.name.toString(),
-                                            style: const TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.normal)),
-                                      ),
-                                    ),
+                              ),
+                              onTap: () =>
+                                  showDialog('Name', comment.name.toString()),
+                            ),
+                            DataCell(
+                              SizedBox(
+                                width: Get.width / 8,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4),
+                                    child: Text(comment.email.toString(),
+                                        style: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.normal)),
                                   ),
-                                  onTap: () => showDialog(
-                                      'Name', comment.name.toString()),
                                 ),
-                                DataCell(
-                                  SizedBox(
-                                    width: Get.width / 8,
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(4),
-                                        child: Text(comment.email.toString(),
-                                            style: const TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.normal)),
-                                      ),
-                                    ),
+                              ),
+                              onTap: () =>
+                                  showDialog('Name', comment.name.toString()),
+                            ),
+                            DataCell(
+                              SizedBox(
+                                width: Get.width / 2,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4),
+                                    child: Text(comment.body.toString(),
+                                        style: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.normal)),
                                   ),
-                                  onTap: () => showDialog(
-                                      'Name', comment.name.toString()),
                                 ),
-                                DataCell(
-                                  SizedBox(
-                                    width: Get.width / 2,
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(4),
-                                        child: Text(comment.body.toString(),
-                                            style: const TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.normal)),
-                                      ),
-                                    ),
-                                  ),
-                                  onTap: () => showDialog(
-                                      'Body', comment.body.toString()),
-                                ),
-                              ]),
-                            ],
-                          );
-                        }
-                        // return CommentListItem(
-                        //     comment: item,
-                        //     index: index,
-                        //   );
-                      }),
-                    ),
-                  )
-                // TODO: implement local database to work offline
-                : const Center(
-                    child: Text(
-                      'No Internet',
-                      style: TextStyle(fontSize: 30),
-                    ),
-                  )),
+                              ),
+                              onTap: () =>
+                                  showDialog('Body', comment.body.toString()),
+                            ),
+                          ]),
+                        ],
+                      );
+                    }
+                    // return CommentListItem(
+                    //     comment: item,
+                    //     index: index,
+                    //   );
+                  }),
+                ),
+              )
+            // TODO: implement local database to work offline
+            : const Center(
+                child: Text(
+                  'No Internet',
+                  style: TextStyle(fontSize: 30),
+                ),
+              )),
       );
 
   @override

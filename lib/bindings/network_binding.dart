@@ -7,6 +7,6 @@ class NetworkBinding extends Bindings {
   @override
   void dependencies() {
     // TODO: implement dependencies
-    Get.lazyPut<GetXNetworkManager>(() => GetXNetworkManager());
+    Get.put(GetXNetworkManager());
   }
 }
